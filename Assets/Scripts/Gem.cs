@@ -36,7 +36,6 @@ public class Gem : MonoBehaviour
     {
         if (transform.parent.TryGetComponent<Tile>(out Tile parentTile))
         {
-            Debug.Log("waakingu");
             parentTile.SpawnRandomGem();
             DOTween.Kill(this);
         }

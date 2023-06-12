@@ -34,7 +34,7 @@ public class GemCollector : MonoBehaviour
 
     }
 
-    public void Remove(int id)
+    public void Sell()
     {
         if (gemStack.Count == 0)
             return;
