@@ -17,6 +17,11 @@ public class GameScreenUI : MonoBehaviour
         EventManager.StopListening(Events.OnSellGem, UpdateUI);
     }
 
+    private void Start()
+    {
+        UpdateUI(null);
+    }
+
     public void UpdateUI(Dictionary<string, object> message)
     {
         PlayerController playerController;
@@ -25,7 +30,7 @@ public class GameScreenUI : MonoBehaviour
         if (!player.TryGetComponent<PlayerController>(out playerController))
             return;
 
-        goldAmountText.text = "Golds: " + playerController.PlayerStats.golds;
+        goldAmountText.text = playerController.PlayerStats.golds.ToString();
 
     }
 }

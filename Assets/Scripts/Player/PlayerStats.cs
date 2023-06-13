@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class CollectedGemInfo
 {
-    public byte[] iconData;
+    public byte[] iconData; // to be able to serialize the icon sprite
     public string name;
     public int count;
 
@@ -19,9 +19,11 @@ public class CollectedGemInfo
 
     public Sprite GetIconSprite()
     {
+        // convert byte array to sprite
         Texture2D texture = new Texture2D(512, 512);
         texture.LoadImage(iconData);
-        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
+        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height),
+            Vector2.one * 0.5f);
         return sprite;
     }
 }
@@ -39,11 +41,13 @@ public class PlayerStats
 
     public void AddGolds(int amount)
     {
+        // adds golds to player stats
         golds += amount;
     }
 
     public void AddCollectedGem(Gem gem)
     {
+        // adds collected gems to player stats
         for(int i = 0; i < collectedGems.Count; i++)
         {
             if (collectedGems[i].name.Equals(gem.Name))

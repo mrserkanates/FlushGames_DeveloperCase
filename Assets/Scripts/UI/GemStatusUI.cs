@@ -4,11 +4,11 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class GemStatus : MonoBehaviour
+public class GemStatusUI : MonoBehaviour
 {
-    [SerializeField] private Image iconImage;
-    [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI collectedCountText;
+    public Image iconImage;
+    public TextMeshProUGUI nameText;
+    public TextMeshProUGUI collectedCountText;
 
     private Sprite icon;
     private string name;

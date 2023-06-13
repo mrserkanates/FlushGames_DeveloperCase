@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Camera cameraToFollow;
-    public float offsetX, offsetY, offsetZ;
+    public float offsetX, offsetY, offsetZ; // camera offsets
 
     private void LateUpdate()
     {

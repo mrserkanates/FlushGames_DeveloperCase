@@ -9,12 +9,17 @@ public class GemsUI : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.StartListening(Events.OnCollectGem, UpdateUI);
+        EventManager.StartListening(Events.OnSellGem, UpdateUI);
     }
 
     private void OnDisable()
     {
-        EventManager.StopListening(Events.OnCollectGem, UpdateUI);
+        EventManager.StopListening(Events.OnSellGem, UpdateUI);
+    }
+
+    private void Start()
+    {
+        UpdateUI(null);
     }
 
     public void UpdateUI(Dictionary<string, object> message)
@@ -33,11 +38,11 @@ public class GemsUI : MonoBehaviour
         for (int i = 0; i < playerController.PlayerStats.collectedGems.Count; i++)
         {
             GameObject goGemStatus = Instantiate(gemStatusPrefab, Vector3.zero, Quaternion.identity, gemStatusListParent);
-            if (goGemStatus.TryGetComponent<GemStatus>(out GemStatus gemStatus))
+            if (goGemStatus.TryGetComponent<GemStatusUI>(out GemStatusUI gemStatusUI))
             {
-                gemStatus.Icon = playerController.PlayerStats.collectedGems[i].GetIconSprite();
-                gemStatus.Name = playerController.PlayerStats.collectedGems[i].name;
-                gemStatus.CollectedCount = playerController.PlayerStats.collectedGems[i].count;
+                gemStatusUI.Icon = playerController.PlayerStats.collectedGems[i].GetIconSprite();
+                gemStatusUI.Name = playerController.PlayerStats.collectedGems[i].name;
+                gemStatusUI.CollectedCount = playerController.PlayerStats.collectedGems[i].count;
             }
         }
     }

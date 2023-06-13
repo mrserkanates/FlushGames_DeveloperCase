@@ -5,8 +5,8 @@ using UnityEngine;
 public class SellArea : MonoBehaviour
 {
 
-    [SerializeField] private float sellDuration;
-    private float elapsedTime;
+    [SerializeField] private float sellDuration; // time needed for selling a single gem
+    private float elapsedTime; // elapsed time before a gem is selled
 
     private void OnTriggerStay(Collider other)
     {
@@ -19,7 +19,7 @@ public class SellArea : MonoBehaviour
             if (other.gameObject.TryGetComponent<GemCollector>(out GemCollector gemCollector))
             {
                 gemCollector.Sell();
-                elapsedTime = 0;
+                elapsedTime = 0; // reset elapsed time
             }
         }
     }

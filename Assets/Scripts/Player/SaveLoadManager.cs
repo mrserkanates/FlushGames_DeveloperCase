@@ -27,16 +27,12 @@ public class SaveLoadManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            LoadPlayerStats();
         }
         else
         {
             Destroy(this);
         }
-    }
-
-    private void Start()
-    {
-        LoadPlayerStats();
     }
 
     private void SavePlayerStats(Dictionary<string, object> message)

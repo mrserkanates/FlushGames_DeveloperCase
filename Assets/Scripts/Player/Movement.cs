@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float movementSpeed;
-    public float rotationSpeed;
-    public Joystick joystick;
-    public Animator animator;
+    [Header("Speed")]
+    [SerializeField] private float movementSpeed;
+    [SerializeField] private float rotationSpeed;
+
+    [Space]
+    [SerializeField] private Joystick joystick;
+
+    private Animator animator;
     private Rigidbody rb;
 
-    void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
 
-    void Update()
+    private void Update()
     {
         Vector3 movementDirection = new Vector3(joystick.Horizontal * movementSpeed, rb.velocity.y,
             joystick.Vertical * movementSpeed);

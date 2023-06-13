@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class GemCollector : MonoBehaviour
 {
-    [SerializeField] private GameObject stackParent;
-    [SerializeField] private float gemInterval;
-    [SerializeField] private float collectedGemScale;
+    [SerializeField] private GameObject stackParent; // parent game object of gems that will be stacked
+    [SerializeField] private float gemInterval; // vertical space between stacked gems
 
-    private Stack<Gem> gemStack;
+    private Stack<Gem> gemStack; // holds stacked gems
 
     private void Awake()
     {
@@ -26,13 +25,13 @@ public class GemCollector : MonoBehaviour
 
         gem.GetCollected();
 
-        gem.transform.position = lastStackPos + Vector3.up * gemInterval;
-        gem.transform.localScale = new Vector3(collectedGemScale, collectedGemScale, collectedGemScale);
+        gem.transform.position = lastStackPos + Vector3.up *
+            (gem.transform.localScale.y + gemInterval); // move the gem onto last gem
 
         gem.transform.parent = stackParent.transform;
         gemStack.Push(gem);
 
-        EventManager.TriggerEvent(Events.OnCollectGem, null);
+        EventManager.TriggerEvent(Events.OnCollectGem, null); // call OnCollectGem event
     }
 
     public void Sell()
@@ -47,12 +46,14 @@ public class GemCollector : MonoBehaviour
         if (!gameObject.TryGetComponent<PlayerController>(out playerController))
             return;
 
+        // update player stats
         playerController.PlayerStats.AddGolds(lastGem.GetGemValue());
         playerController.PlayerStats.AddCollectedGem(lastGem);
 
-        gemStack.Pop();
-        Destroy(lastGem.gameObject);
+        gemStack.Pop(); // remove the gem from stack
+        Destroy(lastGem.gameObject); // destroy the gem
 
+        // call OnSellGem event
         EventManager.TriggerEvent(Events.OnSellGem, new Dictionary<string, object> { {"gem", lastGem} });
     }
 
