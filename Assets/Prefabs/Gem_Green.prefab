@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scalingDuration: 5
-  minScale: 0
-  maxScale: 0.6
+  minScale: {x: 0, y: 0, z: 0}
+  maxScale: {x: 0.6, y: 0.6, z: 0.6}
 --- !u!64 &223953745219035163
 MeshCollider:
   m_ObjectHideFlags: 0

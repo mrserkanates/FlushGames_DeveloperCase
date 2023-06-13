@@ -32,6 +32,7 @@ public class GemCollector : MonoBehaviour
         gem.transform.parent = stackParent.transform;
         gemStack.Push(gem);
 
+        EventManager.TriggerEvent(Events.OnCollectGem, null);
     }
 
     public void Sell()
@@ -40,8 +41,19 @@ public class GemCollector : MonoBehaviour
             return;
 
         Gem lastGem = gemStack.Peek();
+
+        PlayerController playerController;
+
+        if (!gameObject.TryGetComponent<PlayerController>(out playerController))
+            return;
+
+        playerController.PlayerStats.AddGolds(lastGem.GetGemValue());
+        playerController.PlayerStats.AddCollectedGem(lastGem);
+
         gemStack.Pop();
         Destroy(lastGem.gameObject);
+
+        EventManager.TriggerEvent(Events.OnSellGem, new Dictionary<string, object> { {"gem", lastGem} });
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,7 +63,9 @@ public class GemCollector : MonoBehaviour
             if (other.gameObject.TryGetComponent<Gem>(out Gem gem))
             {
                 if (gem.IsCollectable())
+                {
                     Collect(other.gameObject.GetComponent<Gem>());
+                }
             }
         }
     }

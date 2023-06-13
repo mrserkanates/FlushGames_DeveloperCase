@@ -6,7 +6,7 @@ using UnityEngine;
 public class GemType : ScriptableObject
 {
     public string name;
-    public float initialSalePrice;
+    public int initialSalePrice;
     public Sprite icon;
     public GameObject prefab;
 }

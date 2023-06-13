@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffad6317d15aed4784995687ddd8d77, type: 3}
   m_Name: GemGreen
   m_EditorClassIdentifier: 
-  prefabName: Green Gem
+  name: Green Gem
   initialSalePrice: 150
   icon: {fileID: 21300000, guid: f0bee8493e6c9d24690e1e1cba66e924, type: 3}
   prefab: {fileID: 1831938358521233263, guid: c6054174738c19b46ae08f078a670db3, type: 3}

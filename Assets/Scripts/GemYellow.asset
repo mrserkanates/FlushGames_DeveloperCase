@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffad6317d15aed4784995687ddd8d77, type: 3}
   m_Name: GemYellow
   m_EditorClassIdentifier: 
-  prefabName: Yellow Gem
+  name: Yellow Gem
   initialSalePrice: 100
   icon: {fileID: 21300000, guid: 125a8a14c2f0760409e73f273da79879, type: 3}
   prefab: {fileID: 6891996720065824372, guid: 41c545d9ade4ab04086a8236236bca33, type: 3}
